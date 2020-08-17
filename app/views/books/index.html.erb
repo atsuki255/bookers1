@@ -1,0 +1,62 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- CSSファイルの読み込み -->
+  <link rel="stylesheet" href="application.css">
+  <title></title>
+</head>
+<body>
+  <h1>books</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>body</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+      <tr>
+      <td>
+        <%= book.title %>
+      </td>
+      <td>
+        <%= book.body %>
+      </td>
+      <td>
+        <%= link_to "show", book_path(book.id) %>
+        <%= link_to "edit", edit_book_path(book.id) %>
+        <%= link_to "destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+      </td>
+      </tr>
+     <% end %>
+    </tbody>
+  </table>
+
+  <h2>New book</h2>
+  <%= form_for(@book) do |f| %>
+  <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <h4>title</h4>
+    <%= f.text_field :title %>
+      <% if @book.errors.any? %>
+   <p>Title can't be blank</p>
+  <% end %>
+
+
+    <h4>body</h4>
+    <%= f.text_area :body %>
+      <% if @book.errors.any? %>
+   <p>Body can't be blank</p>
+  <% end %>
+    <br>
+    <%= f.submit 'Create Book' %>
+
+  <% end %>
+</body>
+</html>

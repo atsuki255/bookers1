@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- CSSファイルの読み込み -->
+  <link rel="stylesheet" href="application.css">
+  <title></title>
+</head>
+<body>
+	<h1>Editing book</h1>
+  <%= form_for(@book) do |f| %>
+  <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <h4>title</h4>
+    <%= f.text_field :title %>
+
+
+    <h4>body</h4>
+    <%= f.text_area :body %>
+    <br>
+    <%= f.submit 'Update Book' %>
+
+  <% end %>
+
+  <p>
+  	<%= link_to "show", book_path(@book.id) %>
+  	<a href="/books">back</a>
+  </p>
+</body>
+</html>

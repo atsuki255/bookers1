@@ -1,0 +1,24 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- CSSファイルの読み込み -->
+  <link rel="stylesheet" href="application.css">
+  <title></title>
+</head>
+<body>
+	<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+	
+	<p>Title:<%= @book.title %></p>
+
+	<p>Body:<%= @book.body %></p>
+
+	<p>
+	<%= link_to "edit", edit_book_path(@book.id) %>
+    <a href="/books">back</a>
+	</p>
+</body>
+</html>
