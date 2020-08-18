@@ -8,6 +8,7 @@
 <body>
 	<h1>Editing book</h1>
   <%= form_for(@book) do |f| %>
+  <%= render 'layouts/error_messages', book: f.object%>
   <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
